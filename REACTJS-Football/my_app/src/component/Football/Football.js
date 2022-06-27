@@ -50,9 +50,11 @@ export const Football = () => {
             img : "https://img.nhandan.com.vn/Files/Images/2020/11/10/005-1605024440410.jpg",
             age : '30',
             name : 'Mohamed Salah',
-        }]
-        const random = Math.floor(Math.random() * addMorePlay.length);
-        const addList = [...add,addMorePlay[random]]
+        }] 
+        const addArray = [...infoPlayer,...addMorePlay]
+        console.log(addArray);
+        const random = Math.floor(Math.random() * addArray.length);
+        const addList = [...add,addArray[random]]
         setAdd(addList)
         console.log(add);
     }
