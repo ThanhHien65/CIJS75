@@ -193,7 +193,7 @@
   transform: scale(0.96);
 }
 
-.submited:disabled {
+.addPlayer:disabled {
   border-color: #dddddd;
   color: #dddddd;
   cursor: not-allowed;

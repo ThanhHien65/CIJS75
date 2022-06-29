@@ -150,11 +150,11 @@
   padding: 0.5rem;
   margin-top: 0.2rem;
 }
-/* .submited {
+.submited {
   padding: 0.5rem 1rem;
   cursor: pointer;
   border: 1px solid black;
-} */
+}
 .submited {
   background-color: #ffffff;
   border: 1px solid #222222;
@@ -182,18 +182,18 @@
   width: auto;
 }
 
-.submited:focus-visible {
+.addPlayer:focus-visible {
   box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
   transition: box-shadow 0.2s;
 }
 
-.submited:active {
+.addPlayer:active {
   background-color: #f7f7f7;
   border-color: #000000;
   transform: scale(0.96);
 }
 
-.submited:disabled {
+.addPlayer:disabled {
   border-color: #dddddd;
   color: #dddddd;
   cursor: not-allowed;

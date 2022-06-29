@@ -187,13 +187,13 @@
   transition: box-shadow 0.2s;
 }
 
-.submited:active {
+.addPlayer:active {
   background-color: #f7f7f7;
   border-color: #000000;
   transform: scale(0.96);
 }
 
-.submited:disabled {
+.addPlayer:disabled {
   border-color: #dddddd;
   color: #dddddd;
   cursor: not-allowed;
