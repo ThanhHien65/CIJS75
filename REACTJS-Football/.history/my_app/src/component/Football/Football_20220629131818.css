@@ -125,33 +125,8 @@
   padding-top: 5px;
 }
 .container {
-  margin: 1rem auto;
-  border: 1px solid #666666;
-  padding: 1rem;
-  width: 40%;
-}
-.infoname {
-}
-.infoage {
   margin: 1rem 0;
 }
-.submit {
-  margin-top: 1rem;
-}
-#fname {
-  padding: 0.5rem;
-  margin-top: 0.2rem;
-}
-#fage {
-  padding: 0.5rem;
-  margin-top: 0.2rem;
-}
-#fposition {
-  padding: 0.5rem;
-  margin-top: 0.2rem;
-}
-.submited {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border: 1px solid black;
+.infoname{
+  
 }

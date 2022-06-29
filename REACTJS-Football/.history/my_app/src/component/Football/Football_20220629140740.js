@@ -110,9 +110,9 @@ export const Football = () => {
     const randomImage = Math.floor(Math.random() * arrPicture.length);
     const CreatedPlayer = {
       img: arrPicture[randomImage],
-      age: age == "" ? "40" : age,
-      name: name == "" ? "neymar" : name,
-      position: fpostition == "" ? "GK" : fpostition,
+      age: age,
+      name: age == "" ? "neymar" : age,
+      position: fpostition,
     };
     const created = add.push(CreatedPlayer);
     SetCreatePlay(created);

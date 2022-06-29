@@ -96,7 +96,7 @@ export const Football = () => {
     const age = document.getElementById("fage").value;
     const name = document.getElementById("fname").value;
     const fpostition = document.getElementById("fposition").value;
-    const arrPicture = [
+    arrPicture = [
       "https://library.sportingnews.com/styles/crop_style_16_9_tablet/s3/2022-05/CristianoRonaldo%20-%20cropped.jpg?itok=HgunUgeG",
       "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/bltee41eef7e0a0e3f3/626b8172918f4e4e59121e78/GettyImages-1240053215.jpg?quality=80&width=1000&format=pjpg&auto=webp",
       "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt4e0a5bb5ccb7b737/62279f5caf95510737333d62/neymar_psg_real.jpg?auto=webp&format=jpg&quality=100",
@@ -107,12 +107,12 @@ export const Football = () => {
       "https://baokhanhhoa.vn/dataimages/202108//original/images5463988_Real_Madrid_l_y_g_____chi_u_m__Kylian_Mbappe_2.jpg",
       "https://img.nhandan.com.vn/Files/Images/2020/11/10/005-1605024440410.jpg",
     ];
-    const randomImage = Math.floor(Math.random() * arrPicture.length);
+    const random = Math.floor(Math.random() * addArray.length);
     const CreatedPlayer = {
-      img: arrPicture[randomImage],
-      age: age == "" ? "40" : age,
-      name: name == "" ? "neymar" : name,
-      position: fpostition == "" ? "GK" : fpostition,
+      img: "https://photo-cms-sggp.zadn.vn/w580/Uploaded/2022/evofzyresfj/2021_10_13/fbcad2dx0airlxr_uzrf.jpg",
+      age: age,
+      name: name,
+      position: fpostition,
     };
     const created = add.push(CreatedPlayer);
     SetCreatePlay(created);
