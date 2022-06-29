@@ -93,7 +93,7 @@
 .Moredetails {
   display: inline-block;
   width: 200px;
-  height: 230px;
+  height: 220px;
   padding: 1rem;
   border: solid 0.2px #dddddd;
   margin: 2rem;
@@ -122,7 +122,7 @@
   padding-top: 5px;
 }
 .Position {
-  padding-top: 0.6rem;
+  padding-top: 1rem;
 }
 .container {
   margin: 1rem auto;

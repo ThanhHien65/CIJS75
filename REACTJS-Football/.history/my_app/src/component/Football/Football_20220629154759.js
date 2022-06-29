@@ -95,7 +95,7 @@ export const Football = () => {
     const age = document.getElementById("fage").value;
     const name = document.getElementById("fname").value;
     const fpostition = document.getElementById("fposition").value;
-    const createImage = [...infoPlayer].map((item) => item.img);
+    const createImage = add.map((item) => item.img);
     const randomImage = Math.floor(Math.random() * createImage.length);
     const CreatedPlayer = {
       img: createImage[randomImage],

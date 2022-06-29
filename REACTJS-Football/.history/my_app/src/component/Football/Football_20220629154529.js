@@ -95,10 +95,10 @@ export const Football = () => {
     const age = document.getElementById("fage").value;
     const name = document.getElementById("fname").value;
     const fpostition = document.getElementById("fposition").value;
-    const createImage = [...infoPlayer].map((item) => item.img);
-    const randomImage = Math.floor(Math.random() * createImage.length);
+    const createImage = add.map((item) => item.img);
+    const randomImage = Math.floor(Math.random() * arrPicture.length);
     const CreatedPlayer = {
-      img: createImage[randomImage],
+      img: arrPicture[randomImage],
       age: age == "" ? "40" : age,
       name: name == "" ? "neymar" : name,
       position: fpostition == "" ? "GK" : fpostition,
