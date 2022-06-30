@@ -96,7 +96,7 @@ export const Football = () => {
     const createImage = [...infoPlayer].map((item) => item.img);
     const randomImage = Math.floor(Math.random() * createImage.length);
     const {name,value} = e.target
-    SetPlayer({...Player,img: createImage[randomImage],[name]:value,})
+    SetPlayer({...Player,img: createImage[randomImage],[name]:(value == "" ? "Empty" :value),})
   }
   const [createPlay, SetCreatePlay] = useState(add);
   const createPlayer = (e) => {
