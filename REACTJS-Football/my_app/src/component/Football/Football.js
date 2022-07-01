@@ -62,11 +62,9 @@ export const Football = () => {
       },
     ];
     const addArray = [...infoPlayer, ...addMorePlay];
-    console.log(addArray);
     const random = Math.floor(Math.random() * addArray.length);
     const addList = [...add, addArray[random]];
     setAdd(addList);
-    console.log(add);
   };
   const [fill, setFill] = useState(add);
   const fillPlayer = () => {
@@ -74,39 +72,37 @@ export const Football = () => {
       .map((item) => item.name)
       .filter((v, i, vIds) => vIds.indexOf(v) !== i);
     const result = add.filter((obj) => fillName.includes(obj.name));
-    const empty = (arr) => (arr.length = 0);
-    empty(add);
+    add.length = 0;
     setFill(add.push(...result));
-    console.log(add);
   };
   const [remove, setRemove] = useState(add);
   const removePlayer = () => {
     setRemove(add.pop());
-    console.log(add);
   };
   const [choose, setChoose] = useState(add);
   const Choice = (e) => {
-    const resutl = e.target.getAttribute("value");
-    console.log(e.target);
-    const RemoveSpecial = add.splice(add[resutl], 1);
-    setChoose(RemoveSpecial);
+    setChoose(add.splice(add[e.target.getAttribute("value")], 1));
   };
-  const [Player,SetPlayer] = useState({})
-  const getValue = (e) =>{
+  const [Player, SetPlayer] = useState({});
+  const getValue = (e) => {
     const createImage = [...infoPlayer].map((item) => item.img);
     const randomImage = Math.floor(Math.random() * createImage.length);
-    const {name,value} = e.target
-    SetPlayer({...Player,img: createImage[randomImage],[name]:(value == "" ? "Empty" :value),})
-  }
+    const { name, value } = e.target;
+    SetPlayer({
+      ...Player,
+      img: createImage[randomImage],
+      [name]: value === "" ? "Empty" : value,
+    });
+  };
   const [createPlay, SetCreatePlay] = useState(add);
   const createPlayer = (e) => {
-    e.preventDefault()
-    const addPlayer = add.push(Player)
-    SetCreatePlay(addPlayer)
-    document.getElementById("fname").value=""
-    document.getElementById("fage").value=""
-    document.getElementById("fposition").value=""
-  }
+    e.preventDefault();
+    const addPlayer = add.push(Player);
+    SetCreatePlay(addPlayer);
+    document.getElementById("fname").value = "";
+    document.getElementById("fage").value = "";
+    document.getElementById("fposition").value = "";
+  };
   return (
     <div>
       <h1>Football Manager</h1>
@@ -129,15 +125,25 @@ export const Football = () => {
         <form action="" className="informationPlay">
           <div className="infoname">
             <div className="fname">Name</div>
-            <input type="text" id="fname" name="name"onChange={getValue}></input>
+            <input
+              type="text"
+              id="fname"
+              name="name"
+              onChange={getValue}
+            ></input>
           </div>
           <div className="infoage">
             <div className="fage">Age</div>
-            <input type="text" id="fage" name="age" onChange={getValue} ></input>
+            <input type="text" id="fage" name="age" onChange={getValue}></input>
           </div>
           <div className="infoposition">
             <div className="fposition">Position</div>
-            <input type="text" id="fposition" name="position" onChange={getValue}></input>
+            <input
+              type="text"
+              id="fposition"
+              name="position"
+              onChange={getValue}
+            ></input>
           </div>
           <div className="submit">
             <button type="submit" className="submited" onClick={createPlayer}>
