@@ -1,0 +1,14 @@
+.todoContainer {
+  margin: 1rem 0;
+  text-align: center;
+}
+#input {
+  border: none;
+  padding: 1rem;
+}
+#input:focus {
+  outline: none;
+}
+::placeholder {
+  font-size: 1rem;
+}
