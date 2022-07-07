@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Todoapp.css";
 import { v4 as uuidv4 } from "uuid";
 
@@ -30,22 +30,39 @@ export const Todoapp = () => {
     task.splice(task[e.target.name], 1);
     SetTask([...task]);
   };
-  const [searchTask, setSearchTask] = useState();
-  const searchtask = (e) => {
-    setSearchTask(e.target.value);
-  };
-  const gettask = () => {
-    console.log(searchTask);
-    document.getElementById("Search").value = "";
-    const fillName = task.filter((item) => searchTask.includes(item.name));
-    task.length = 0;
-    SetTask([...task, ...fillName]);
-  };
   return (
     <div>
       <div className="App">
         <div className="header">
           <h1>My Todos</h1>
+        </div>
+        <div className="detailsTodo">
+          <div className="TodoName">
+            <input
+              type="input"
+              id="name"
+              className="formvalue"
+              placeholder="Name"
+              onChange={getvalue}
+              onKeyDown={enter}
+            />
+          </div>
+          <div className="TodoDescription">
+            <input
+              type="input"
+              id="description"
+              className="formvalue"
+              placeholder="Description"
+              onChange={getvalue}
+              onKeyDown={enter}
+            />
+          </div>
+          <input
+            type="button"
+            value="Add Todo"
+            className="addTodo"
+            onClick={insertodo}
+          ></input>
         </div>
         <div className="detailsTodo">
           <div className="TodoName">
@@ -104,24 +121,6 @@ export const Todoapp = () => {
               </div>
             );
           })}
-        </div>
-        <div className="detailsTodo">
-          <div className="TodoName">
-            <input
-              type="input"
-              id="Search"
-              className="formsearch"
-              placeholder="enter your search task name"
-              onChange={searchtask}
-              onKeyDown={enter}
-            />
-          </div>
-          <input
-            type="button"
-            value="Search"
-            className="addTodo"
-            onClick={gettask}
-          ></input>
         </div>
       </div>
     </div>

@@ -38,8 +38,11 @@ export const Todoapp = () => {
     console.log(searchTask);
     document.getElementById("Search").value = "";
     const fillName = task.filter((item) => searchTask.includes(item.name));
-    task.length = 0;
-    SetTask([...task, ...fillName]);
+    const removeName = task.remove((item) => {});
+    // task.length = 0;
+    // SetTask([...task, ...fillName]);
+    console.log(removeName);
+    console.log(fillName);
   };
   return (
     <div>

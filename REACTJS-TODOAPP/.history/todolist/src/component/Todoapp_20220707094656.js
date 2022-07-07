@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Todoapp.css";
 import { v4 as uuidv4 } from "uuid";
 
@@ -29,17 +29,6 @@ export const Todoapp = () => {
   const deleted = (e) => {
     task.splice(task[e.target.name], 1);
     SetTask([...task]);
-  };
-  const [searchTask, setSearchTask] = useState();
-  const searchtask = (e) => {
-    setSearchTask(e.target.value);
-  };
-  const gettask = () => {
-    console.log(searchTask);
-    document.getElementById("Search").value = "";
-    const fillName = task.filter((item) => searchTask.includes(item.name));
-    task.length = 0;
-    SetTask([...task, ...fillName]);
   };
   return (
     <div>
@@ -74,6 +63,16 @@ export const Todoapp = () => {
             className="addTodo"
             onClick={insertodo}
           ></input>
+          <div className="TodoName">
+            <input
+              type="input"
+              id="name"
+              className="formvalue"
+              placeholder="Name"
+              onChange={getvalue}
+              onKeyDown={enter}
+            />
+          </div>
         </div>
         <div className="insertTask">
           {task.map((item, index) => {
@@ -104,24 +103,6 @@ export const Todoapp = () => {
               </div>
             );
           })}
-        </div>
-        <div className="detailsTodo">
-          <div className="TodoName">
-            <input
-              type="input"
-              id="Search"
-              className="formsearch"
-              placeholder="enter your search task name"
-              onChange={searchtask}
-              onKeyDown={enter}
-            />
-          </div>
-          <input
-            type="button"
-            value="Search"
-            className="addTodo"
-            onClick={gettask}
-          ></input>
         </div>
       </div>
     </div>

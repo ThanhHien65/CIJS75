@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Todoapp.css";
 import { v4 as uuidv4 } from "uuid";
 
@@ -37,9 +37,8 @@ export const Todoapp = () => {
   const gettask = () => {
     console.log(searchTask);
     document.getElementById("Search").value = "";
-    const fillName = task.filter((item) => searchTask.includes(item.name));
-    task.length = 0;
-    SetTask([...task, ...fillName]);
+    const fillName = task.filter((obj) => fillName.includes(obj.searchTask));
+    console.log(fillName);d
   };
   return (
     <div>

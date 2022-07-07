@@ -37,8 +37,10 @@ export const Todoapp = () => {
   const gettask = () => {
     console.log(searchTask);
     document.getElementById("Search").value = "";
-    const fillName = task.filter((item) => searchTask.includes(item.name));
-    task.length = 0;
+    const fillName = task.filter((item, index) =>
+      searchTask.includes(item.name)
+    );
+    // task.length = 0;
     SetTask([...task, ...fillName]);
   };
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Todoapp.css";
 import { v4 as uuidv4 } from "uuid";
 
@@ -30,17 +30,12 @@ export const Todoapp = () => {
     task.splice(task[e.target.name], 1);
     SetTask([...task]);
   };
-  const [searchTask, setSearchTask] = useState();
   const searchtask = (e) => {
-    setSearchTask(e.target.value);
+    console.log("aaa");
   };
-  const gettask = () => {
-    console.log(searchTask);
-    document.getElementById("Search").value = "";
-    const fillName = task.filter((item) => searchTask.includes(item.name));
-    task.length = 0;
-    SetTask([...task, ...fillName]);
-  };
+  const gettask = () = {
+    console.log("aaa");
+  }
   return (
     <div>
       <div className="App">
@@ -109,7 +104,7 @@ export const Todoapp = () => {
           <div className="TodoName">
             <input
               type="input"
-              id="Search"
+              id="name"
               className="formsearch"
               placeholder="enter your search task name"
               onChange={searchtask}

@@ -39,8 +39,11 @@ export const Todoapp = () => {
     document.getElementById("Search").value = "";
     const fillName = task.filter((item) => searchTask.includes(item.name));
     task.length = 0;
-    SetTask([...task, ...fillName]);
+    setSearchTask([...task, ...fillName]);
   };
+  useEffect(()=>{
+    SetTask()
+  })
   return (
     <div>
       <div className="App">

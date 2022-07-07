@@ -41,6 +41,9 @@ export const Todoapp = () => {
     task.length = 0;
     SetTask([...task, ...fillName]);
   };
+  useEffect(()=>{
+    SetTask()
+  })
   return (
     <div>
       <div className="App">

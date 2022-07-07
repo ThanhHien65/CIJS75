@@ -134,8 +134,9 @@ body {
 
 .formsearch {
   margin: 0 auto;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem;
   font-size: 1.5rem;
   border: #f79a04 0.15rem solid;
   border-radius: 1rem;
+  width: ;
 }

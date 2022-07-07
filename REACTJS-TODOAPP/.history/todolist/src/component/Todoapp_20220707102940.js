@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Todoapp.css";
 import { v4 as uuidv4 } from "uuid";
 
@@ -40,6 +40,7 @@ export const Todoapp = () => {
     const fillName = task.filter((item) => searchTask.includes(item.name));
     task.length = 0;
     SetTask([...task, ...fillName]);
+    
   };
   return (
     <div>
