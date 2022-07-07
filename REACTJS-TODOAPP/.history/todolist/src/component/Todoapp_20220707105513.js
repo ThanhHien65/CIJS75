@@ -34,15 +34,17 @@ export const Todoapp = () => {
   const searchtask = (e) => {
     setSearchTask(e.target.value);
   };
-  const [getTask, SetgetTask] = useState([]);
+  const [getTask, SetgetTask] = useState();
   const gettask = () => {
+    console.log(searchTask);
     document.getElementById("Search").value = "";
     const fillName = task.filter((item) => searchTask.includes(item.name));
-    SetgetTask([...fillName]);
+    // task.length = 0;
+    // SetTask([...task, ...fillName]);
+    SetgetTask
   };
   useEffect(() => {
-    SetTask([...getTask]);
-    console.log("render");
+    
   }, [getTask]);
   return (
     <div>

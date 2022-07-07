@@ -42,7 +42,6 @@ export const Todoapp = () => {
   };
   useEffect(() => {
     SetTask([...getTask]);
-    console.log("render");
   }, [getTask]);
   return (
     <div>

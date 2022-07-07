@@ -40,10 +40,10 @@ export const Todoapp = () => {
     const fillName = task.filter((item) => searchTask.includes(item.name));
     SetgetTask([...fillName]);
   };
-  useEffect(() => {
-    SetTask([...getTask]);
-    console.log("render");
-  }, [getTask]);
+  // useEffect(() => {
+  //   SetTask([...getTask]);
+  //   console.log("render");
+  // }, [getTask]);
   return (
     <div>
       <div className="App">
