@@ -1,0 +1,9 @@
+* {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+.App {
+  width: 40%;
+  /* padding: 1rem 0; */
+  background-color: #897bda;
+}

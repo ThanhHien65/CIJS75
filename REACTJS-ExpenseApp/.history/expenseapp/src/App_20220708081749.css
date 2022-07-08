@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+.App {
+  width: 40%;
+  margin: 1rem auto;
+  /* background-color: #897bda; */
+}
+.NewExpense {
+  width: 1rem;
+}

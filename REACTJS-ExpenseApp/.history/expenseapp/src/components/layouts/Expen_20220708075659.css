@@ -1,0 +1,8 @@
+.Addexpense a {
+  text-align: center;
+  display: block;
+  font-size: 2rem;
+}
+.newexpense {
+  background-color: aqua;
+}

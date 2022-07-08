@@ -1,0 +1,14 @@
+.Addexpense a {
+  text-align: center;
+}
+.NewExpense {
+  background-color: #897bda;
+  padding: 3rem;
+  text-align: center;
+  border-radius: 1rem;
+}
+.NewExpense a {
+  padding: 1rem;
+  background-color: #862796;
+  border-radius: 1rem;
+}
