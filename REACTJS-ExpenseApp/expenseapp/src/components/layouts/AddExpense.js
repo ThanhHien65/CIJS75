@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import "./Expen.css";
-import Detailsexpense from "./Detailsexpense";
+import {ExpenseList} from "./Expenselist"
 export const AddExpense = () => {
-  const [Expanse, SetExpanse] = useState([]);
+  const [Expanse, SetExpanse] = useRecoilState(ExpenseList);
   const [CreateExpanse, SetCreateExpanse] = useState();
   const getinfomation = (e) => {
     const { id, value } = e.target;
     SetCreateExpanse({ ...CreateExpanse, [id]: value });
   };
   const Getvalue = (e) => {
-    console.log(Expanse);
     SetExpanse([...Expanse, CreateExpanse]);
+    console.log(Expanse);
   };
   return (
     <div className="Addexpense">

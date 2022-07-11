@@ -120,6 +120,7 @@ ul {
   padding: 1.5rem 1rem;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 .modetailsexpanse {
   display: flex;

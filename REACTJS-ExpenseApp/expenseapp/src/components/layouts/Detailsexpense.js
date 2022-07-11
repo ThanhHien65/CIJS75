@@ -1,6 +1,18 @@
 import React from "react";
 import "./Expen.css";
+import { useRecoilValue } from "recoil";
+import {ExpenseList,Splitdate} from "./Expenselist"
 const Detailsexpense = (props) => {
+  const Expanse = useRecoilValue(ExpenseList)
+  const GetDate = useRecoilValue(Splitdate)
+  const getvalue = () =>{
+    console.log(GetDate);
+    // console.log(GetDate.split('/'));
+    // GetDate.foreach((item)=>{
+    //   console.log(item);
+    // })
+
+  }
   const informationMonth = [
     "jan",
     "feb",
@@ -45,11 +57,28 @@ const Detailsexpense = (props) => {
             <h4>16</h4>
           </div>
           <div className="nameexpanse">
-            <h1>Some Book</h1>
+            <h1 onClick={getvalue}>Some Book</h1>
           </div>
         </div>
         <div className="amountenxpanse">$ 50</div>
       </div>
+      {Expanse.map((item,index)=>{
+        return(
+          <div className="insertexpense" key={index}>
+          <div className="modetailsexpanse">
+            <div className="infordate">
+              <p value="Jan">{item.Date}</p>
+              <p>2022</p>
+              <h4>16</h4>
+            </div>
+            <div className="nameexpanse">
+              <h1 >{item.name}</h1>
+            </div>
+          </div>
+          <div className="amountenxpanse">$ {item.Amount}</div>
+      </div>
+        )
+      })}
     </div>
   );
 };
