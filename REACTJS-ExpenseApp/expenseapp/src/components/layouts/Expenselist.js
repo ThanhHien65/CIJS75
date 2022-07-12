@@ -1,4 +1,5 @@
 import { atom, selector } from "recoil";
+import moment from 'moment'
 export const ExpenseList = atom({
   key: "Expense",
   default: [],
@@ -7,12 +8,11 @@ export const Splitdate = selector({
   key: "Splitdate",
   get: ({ get }) => {
     const getdate = get(ExpenseList);
-    const createArray = getdate.map((item) => item.date);
-    const values = ["day", "month", "year"];
+    const values = ["month","day","year"];
     const newData = getdate.map((item, index) => ({
       ...item,
-      date: item.date
-        .split("/")
+      date: moment(item.date).format('MMMM-DD-YYYY')
+        .split("-")
         .reduce((a, v, i) => ({ ...a, [values[i]]: v }), {}),
     }));
     return newData;

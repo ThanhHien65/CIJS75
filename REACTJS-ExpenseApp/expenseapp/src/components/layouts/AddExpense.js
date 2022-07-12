@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import {v4 as uuidv4} from 'uuid'
 import "./Expen.css";
 import { ExpenseList } from "./Expenselist";
 export const AddExpense = () => {
@@ -8,7 +9,7 @@ export const AddExpense = () => {
   const [CreateExpanse, SetCreateExpanse] = useState();
   const getinfomation = (e) => {
     const { id, value } = e.target;
-    SetCreateExpanse({ ...CreateExpanse, [id]: value });
+    SetCreateExpanse({ ...CreateExpanse, [id]: value,id:uuidv4() });
   };
   const Getvalue = (e) => {
     SetExpanse([...Expanse, CreateExpanse]);
@@ -45,7 +46,7 @@ export const AddExpense = () => {
               date
             </label>
             <input
-              type="text"
+              type="date"
               id="date"
               placeholder="dd/mm/yyyy"
               onChange={getinfomation}

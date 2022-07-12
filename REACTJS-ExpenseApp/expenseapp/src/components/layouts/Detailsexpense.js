@@ -1,16 +1,11 @@
 import React from "react";
 import "./Expen.css";
 import { useRecoilValue } from "recoil";
-import { ExpenseList, Splitdate } from "./Expenselist";
-const Detailsexpense = (props) => {
-  const Expanse = useRecoilValue(ExpenseList);
-  const Getinfodate = useRecoilValue(Splitdate);
+import { Splitdate } from "./Expenselist";
+const Detailsexpense = () => {
+  const GetExpanselist = useRecoilValue(Splitdate);
   const getvalue = () => {
-    console.log(Getinfodate);
-    // console.log(Getdate.split('/'));
-    // Getdate.foreach((item)=>{
-    //   console.log(item);
-    // })
+    console.log(GetExpanselist);
   };
   const informationMonth = [
     "jan",
@@ -61,15 +56,19 @@ const Detailsexpense = (props) => {
         </div>
         <div className="amountenxpanse">$ 50</div>
       </div>
-      {Expanse.map((item, index) => {
+      {GetExpanselist.map((item) => {
         return (
-          <div className="insertexpense" key={index}>
+          <div className="insertexpense" key={item.id}>
             <div className="modetailsexpanse">
-              <div className="infordate">
-                <p value="Jan">{item.date}</p>
-                <p>2022</p>
-                <h4>16</h4>
-              </div>
+                {[{...(item.date)}].map((item)=>{
+                  return(
+                    <div className="infordate">
+                      <p value="Jan">{item.month}</p>
+                      <p>{item.year}</p>
+                      <h4>{item.day}</h4>
+                    </div>
+                  )
+                })}
               <div className="nameexpanse">
                 <h1>{item.name}</h1>
               </div>
