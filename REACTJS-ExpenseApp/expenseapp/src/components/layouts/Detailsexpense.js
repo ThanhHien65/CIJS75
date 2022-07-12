@@ -2,25 +2,13 @@ import React from "react";
 import "./Expen.css";
 import { useRecoilValue } from "recoil";
 import { Splitdate } from "./Expenselist";
+import moment from 'moment'
 const Detailsexpense = () => {
   const GetExpanselist = useRecoilValue(Splitdate);
   const getvalue = () => {
     console.log(GetExpanselist);
   };
-  const informationMonth = [
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec",
-  ];
+  const informationMonth = moment.monthsShort()
   return (
     <div className="detailsexpense">
       <div className="chooseyear">
