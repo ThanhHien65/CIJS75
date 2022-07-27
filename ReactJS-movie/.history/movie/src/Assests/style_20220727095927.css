@@ -1,0 +1,8 @@
+* {
+  margin: 0;
+  font-size: 10px;
+}
+html {
+  background-image: linear-gradient(to top, #5ad1bd);
+  /* background-color: #baa5ed; */
+}

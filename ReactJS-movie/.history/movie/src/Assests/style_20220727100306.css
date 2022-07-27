@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  font-size: 10px;
+
+}
+html {
+  height: 100%;
+  background-image: linear-gradient(to top, white 50%, #5ad1bd 50%);
+  /* background-color: #baa5ed; */
+}

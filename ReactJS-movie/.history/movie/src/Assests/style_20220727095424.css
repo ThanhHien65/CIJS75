@@ -1,0 +1,7 @@
+* {
+  margin: 0;
+  font-size: 10px;
+}
+html {
+  background-color: linear-gradient(to top, #5ad1bd 50%, white 50%);
+}
