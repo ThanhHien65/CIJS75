@@ -5,7 +5,7 @@ import {
   faArrowCircleRight,
   faArrowCircleLeft,
 } from "@fortawesome/fontawesome-free-solid";
-import { faCircleMinus, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faCircleMinus, faCirclePlus,faCircleArrowDown,faCircleArrowUp } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/scss/modal-video.scss";
@@ -19,9 +19,10 @@ const Movies = () => {
   const [data, setData] = useState([]);
   const [infodirector, SetInfodirector] = useState("");
   const [infocast, setInfocas] = useState([]);
-  const [trailer, setTrailer] = useState([""]);
+  const [trailer, setTrailer] = useState([]);
   const [isOpen, setOpen] = useState(false);
   const [isShow, setShow] = useState(false);
+  const [isShowsimi, setShowsimi] = useState(false);
   const [generes, setGeneres] = useState([]);
   const [valuegene, SetValueGene] = useState([]);
   const [genre, setGenre] = useState([]);
@@ -45,10 +46,11 @@ const Movies = () => {
       var random = Math.floor(Math.random() * response.data.results.length);
       setData([...data, response.data.results[random]]);
       const defaul = response.data.results;
-      const checkdata = defaul.splice(random, 1);
+      const GetOneMovie = defaul.splice(random, 1);
       setAllData([...Alldata, defaul]);
-      SetValueGene([...valuegene, response.data.results[random].genre_ids]);
-      getdirector(response.data.results[random].id).then((response) => {
+      SetValueGene([...valuegene, GetOneMovie[0].genre_ids]);
+      const movieID= GetOneMovie[0].id
+      getdirector(movieID).then((response) => {
         const createdirector = response.data.crew;
         const searchdirector = createdirector.find(
           (item) => item.job === "Director"
@@ -58,8 +60,8 @@ const Movies = () => {
         setInfocas(searchcast);
         SetInfodirector(searchdirector.name);
       });
-      gettrailer(response.data.results[random].id).then((response) => {
-        setTrailer(response.data.results[response.data.results.length - 1].key);
+      gettrailer(movieID).then((response) => {
+        setTrailer([...trailer,response.data.results[response.data.results.length - 1].key]);
       });
       getgenre.then((response) => {
         const dataGene = response.data.genres;
@@ -68,7 +70,7 @@ const Movies = () => {
     });
   }, []);
   const test = () => {
-    console.log(Alldata[0]);
+    console.log(data[0].id);
   };
   const showgenre = () => {
     setShow(!isShow);
@@ -80,13 +82,28 @@ const Movies = () => {
     console.log(arr);
     setGenre([...genre, arr]);
   };
-  const handleDelete = () => {
-    alert("Call delete");
-  };
-
-  const handleView = () => {
-    alert("Call view");
-  };
+  const render = () =>{
+    return(
+      <Slider
+        slidesToShow={4}
+        dots
+      >
+        {Array.from(Alldata[0]).map((index, i) => (
+          <div className="container_image">
+            <div
+              className="image_item"
+              key={i}
+            >
+              <img src={getImage(index.poster_path)} alt="" />
+            </div>
+          </div>
+        ))}
+      </Slider>
+    )
+  }
+  const showsimi = ()=>{
+    setShowsimi(!isShowsimi)
+  }
   return (
     <div>
       {data.map((movie, index) => {
@@ -196,66 +213,21 @@ const Movies = () => {
           />
         </React.Fragment>
       </div>
-      <div className="similar">
-        <h1>Similiar Show</h1>
-      </div>
-      <Slider
-        nextArrow={<button type="button">{"->"}</button>}
-        prevArrow={<button type="button">{"<-"}</button>}
-        slidesToShow={3}
-        dots
-      >
-        {false
-          ? []
-          : Array.from(new Array(8)).map((_, i) => (
-              <div className="container_image">
-                <div
-                  onClick={handleView}
-                  className="image_item"
-                  key={i}
-                  style={{
-                    height: 200,
-                  }}
-                >
-                  {Alldata[0]?.map((item, index) => {
-                    return (
-                      <div className="container_image">
-                        <div
-                          onClick={handleView}
-                          className="image_item"
-                          key={i}
-                          style={{
-                            height: 200,
-                          }}
-                        >
-                          <img
-                            src={getImage(item.poster_path)}
-                            alt=""
-                            onClick={test}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
+      <div className="similar" onClick={showsimi}>
+                  <h1>
+                  Similiar Show
+                    <FontAwesomeIcon
+                      className="fa-icon"
+                      icon={isShowsimi ? faCircleArrowDown : faCircleArrowUp}
+                      style={{
+                        color: "white",
+                        fontSize: "2rem",
+                        paddingLeft: "1.5rem",
+                      }}
+                    />
+                  </h1>
                 </div>
-              </div>
-            ))}
-        {/* {Alldata.map((item, index) => {
-          return (
-            <div className="container_image">
-              <div
-                className="image_item"
-                key={index}
-                style={{
-                  height: 200,
-                }}
-              >
-                <img src="https://placeimg.com/380/200/nature" alt="" />
-              </div>
-            </div>
-          );
-        })} */}
-      </Slider>
+      {isShowsimi ? render() : ""}
     </div>
   );
 };
