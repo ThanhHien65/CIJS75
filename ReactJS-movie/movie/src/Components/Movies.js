@@ -10,10 +10,12 @@ import axios from "axios";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/scss/modal-video.scss";
 import Slider from "infinite-react-carousel";
+import { useRecoilState,useRecoilValue } from "recoil";
+import { Datasearch,GetDatasearch } from "../Components/Datasearch";
+import moment from "moment";
 const BASE_URL = "https://api.themoviedb.org/3";
 const api_key = "648e247ec9d10de146e6dca3652a6715";
 const getImage = (path) => `https://image.tmdb.org/t/p/w500/${path}`;
-
 const Movies = () => {
   const [Alldata, setAllData] = useState([]);
   const [data, setData] = useState([]);
@@ -69,9 +71,6 @@ const Movies = () => {
       });
     });
   }, []);
-  const test = () => {
-    console.log(data);
-  };
   const showgenre = () => {
     setShow(!isShow);
     const arr = [];
@@ -84,7 +83,7 @@ const Movies = () => {
   };
   const Changedata = (e) =>{
     const getdata = Alldata[0][e.target.className]
-    // Alldata[0][e.target.className] = data[0]
+    Alldata[0][e.target.className] = data[0]
     data.length = 0
     setData([...data,getdata])
     valuegene.length=0
@@ -95,27 +94,51 @@ const Movies = () => {
       setTrailer([...trailer,response.data.results[response.data.results.length - 1].key]);
     });
     setShow(false)
-    // setAllData([...Alldata])
+    setAllData([...Alldata])
     
   }
   const render = () =>{
-    
     return(
       <Slider
         slidesToShow={5}
         dots
+        duration={100}
+        autoplay={true}
+        nextArrow={<h1>{"<-"}</h1>}
+        prevArrow={<button type="button" style={{color:"red"}}>{"<-"}</button>}
       >
         {Array.from(Alldata[0]).map((index, i) => {
+          const setVote = (vote)=>{
+            const voted = (convert) => convert.toString().replace('.', '')
+            if(vote >=7){
+               return (
+                "#21d07a"
+               )
+            }else if (vote >=5){
+              return (
+
+                "#d2d531"
+               )
+            }else {
+              return (
+                "#db2360"
+               )
+            }
+          }
           return(
           <div className="container_image" >
             <div
               className="image_item" 
               key={i}
-              onClick={Changedata}
               value={i}
             >
-              <img src={getImage(index.poster_path)} alt="" className={i} />
-              <div className="vote"><h1>{index.vote_average}<b style={{fontSize:"1rem",}}>%</b></h1></div>
+              <img src={getImage(index.poster_path)} alt="" className={i} onClick={Changedata}/>
+              <div className="votecirle"><div className="vote" style={{color: setVote(index.vote_average)}}><h1>{index.vote_average.toString().replace('.','')}<b style={{fontSize:"1rem",position:"absolute"}}>%</b></h1></div>
+                <div className="infordetail">
+                  <div className="infotittle"><h1 style={{fontSize:"1.6rem"}}>{index.title}</h1></div>
+                  <p style={{fontSize:"1.6rem",color: "rgba(0,0,0,0.6)"}}>{moment(index.release_date).format("MMMM DD, YYYY")}</p>
+                </div>
+              </div>
             </div>
           </div>
         )})}
@@ -125,16 +148,22 @@ const Movies = () => {
   const showsimi = ()=>{
     setShowsimi(!isShowsimi)
   }
-  // const Changedata = () =>{
-  //   console.log(test);
-  // }
+  const [enter,setEnter] = useRecoilState(Datasearch);
+  const [dataSearch,SetdataSearch] = useRecoilState(GetDatasearch)
+  const seachResult = () =>{
+    return(
+      <div className="ShowSearch">
+          <div className="Closesearch" onClick={()=>setEnter(!enter)}><h1>X</h1></div>
+      </div>
+    )
+  }
   return (
     <div>
       {data.map((movie, index) => {
         return (
           <div className="content" key={index}>
             <div className="conent_poster">
-              <img src={getImage(movie.poster_path)} alt="" onClick={test} />
+              <img src={getImage(movie.poster_path)} alt="" onClick={()=>console.log(dataSearch)} />
             </div>
             <div className="content_introduction">
               <div className="content_moviename">
@@ -252,6 +281,7 @@ const Movies = () => {
                   </h1>
                 </div>
       {isShowsimi ? render() : ""}
+      {enter ? seachResult():""}
     </div>
   );
 };

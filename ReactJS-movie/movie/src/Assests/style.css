@@ -13,7 +13,7 @@ html {
   width: 70%;
   height: 100%;
   background-color: #ffffff;
-  margin: 2% auto;
+  margin: 0 auto;
   border-radius: 1rem;
   padding: 4rem 8rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -71,9 +71,13 @@ html {
   margin-bottom: 4rem;
   /* height: auto; */
   min-height: auto;
+  /* position: absolute; */
+  /* left: 0px; */
+  /* top: 0px; */
+  z-index: 1;
 }
 .conent_poster {
-  width: 50%;
+  width: 40%;
   height: 100%;
 }
 .conent_poster img {
@@ -163,7 +167,8 @@ b {
 }
 .content_rating p,
 b {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 .show_genre {
   padding: 1rem;
@@ -249,24 +254,65 @@ b {
   box-shadow: none;
   transform: translateY(0);
 }
+.votecirle{
+  height: 12rem;
+}
 .vote{
   display: inline;
   position: absolute;
-  width: 4rem;
-  height: 4rem;
-  background-color: black;
-  color: white;
-  right: 20%;
+  width: 5rem;
+  height: 5rem;
+  background-color: #000;
+  color: #ffffff;
+  left: 25%;
+  bottom: 25%;
   border-radius: 50%;
-  bottom:1rem;
-  font-size: 1.5rem;
-  /* text-align: center; */
+  font-family: 'Courier New', Courier, monospace;
+  border: 5px solid rgb(92, 88, 88); 
 }
 .vote h1{
-text-align: center;
 position: absolute;
 top: 50%;
-left: 50%;
-font-size: 1.5rem;
+left: 45%;
+font-size: 1.6rem;
 transform: translate(-50%,-50%);
+font-family: 'Source Sans Pro', Arial, sans-serif;
+}
+.infordetail{
+  position: relative;
+  top: 30%;
+  width: 80%;
+}
+.infordetail h1 p{
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+}
+.infotittle{
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+}
+.ShowSearch{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 100%;
+  background-color: #94a8a56b;
+  transform: translate(-50%,-50%);
+  border-radius: 1rem;
+}
+.Closesearch h1{
+  font-size: 3rem;
+  position: absolute;
+  top: 0.5%;
+  right: 0.5%;
+  cursor: pointer;
+  color: #FFFF;
+  background-color: #5ad1bd;
+  padding: 0 1rem;
+  border-radius: 50%;
+}
+.block button {
+  color: #626262;
 }

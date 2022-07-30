@@ -3,8 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/fontawesome-free-solid";
 import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { Datasearch,GetDatasearch } from "../Components/Datasearch";
 const Header = () => {
   const [item, setItem] = useState(false);
+  const [enter,setEnter] = useRecoilState(Datasearch);
+  const [data,SetData] = useRecoilState(GetDatasearch)
+  const getinput =(e) =>{
+    if (e.key === 'Enter') {
+      setEnter(!enter)
+      SetData(e.target.value)
+    }
+    e.target.value=''
+  }
   const changeIcon = (e) => {
     setItem(!item);
   };
@@ -41,6 +52,7 @@ const Header = () => {
             InputProps={{ style: { fontSize: 15 } }}
             InputLabelProps={{ style: { fontSize: 15 } }}
             margin="normal"
+            onKeyDown={getinput}
           />
         </div>
         <div
