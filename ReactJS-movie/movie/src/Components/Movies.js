@@ -70,7 +70,7 @@ const Movies = () => {
     });
   }, []);
   const test = () => {
-    console.log(data[0].id);
+    console.log(data);
   };
   const showgenre = () => {
     setShow(!isShow);
@@ -82,28 +82,52 @@ const Movies = () => {
     console.log(arr);
     setGenre([...genre, arr]);
   };
+  const Changedata = (e) =>{
+    const getdata = Alldata[0][e.target.className]
+    // Alldata[0][e.target.className] = data[0]
+    data.length = 0
+    setData([...data,getdata])
+    valuegene.length=0
+    genre.length=0
+    SetValueGene([...valuegene, getdata.genre_ids]);
+    trailer.length=0
+    gettrailer(getdata.id).then((response) => {
+      setTrailer([...trailer,response.data.results[response.data.results.length - 1].key]);
+    });
+    setShow(false)
+    // setAllData([...Alldata])
+    
+  }
   const render = () =>{
+    
     return(
       <Slider
-        slidesToShow={4}
+        slidesToShow={5}
         dots
       >
-        {Array.from(Alldata[0]).map((index, i) => (
-          <div className="container_image">
+        {Array.from(Alldata[0]).map((index, i) => {
+          return(
+          <div className="container_image" >
             <div
-              className="image_item"
+              className="image_item" 
               key={i}
+              onClick={Changedata}
+              value={i}
             >
-              <img src={getImage(index.poster_path)} alt="" />
+              <img src={getImage(index.poster_path)} alt="" className={i} />
+              <div className="vote"><h1>{index.vote_average}<b style={{fontSize:"1rem",}}>%</b></h1></div>
             </div>
           </div>
-        ))}
+        )})}
       </Slider>
     )
   }
   const showsimi = ()=>{
     setShowsimi(!isShowsimi)
   }
+  // const Changedata = () =>{
+  //   console.log(test);
+  // }
   return (
     <div>
       {data.map((movie, index) => {
