@@ -79,8 +79,8 @@ const Header = () => {
           }
         >
           <ul >
-            <li onClick={color} >
-              <Link to="/">Upcoming</Link>
+            <li onClick={color}  >
+              <Link to="/" style={{color:'#ffff',backgroundColor:'#5ad1bd'}}>Upcoming</Link>
             </li>
             <li onClick={color}>
               <Link to="/rated">Top Rated</Link>
