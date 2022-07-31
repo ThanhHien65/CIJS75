@@ -45,6 +45,8 @@ html {
   text-decoration: none;
   color: #626262;
   font-size: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 .menu-item li::after {
   content: "";

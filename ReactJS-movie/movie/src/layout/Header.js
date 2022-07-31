@@ -19,6 +19,15 @@ const Header = () => {
   const changeIcon = (e) => {
     setItem(!item);
   };
+  const color = (e) =>{
+    var items = document.querySelectorAll('a');
+    items.forEach((item)=>{
+      item.style.backgroundColor = '';
+      item.style.color='#626262'
+    })
+    e.target.style.backgroundColor = '#5ad1bd';
+    e.target.style.color='#ffff'
+  }
   return (
     <div>
       <div className="menu">
@@ -69,12 +78,15 @@ const Header = () => {
               : { opacity: "0", transform: "translateX(-10%)" }
           }
         >
-          <ul>
-            <li>
-              <Link to="/">Movies</Link>
+          <ul >
+            <li onClick={color} >
+              <Link to="/">Upcoming</Link>
             </li>
-            <li>
-              <Link to="/tv">tv show</Link>
+            <li onClick={color}>
+              <Link to="/rated">Top Rated</Link>
+            </li>
+            <li onClick={color}>
+              <Link to="/popular">Popular</Link>
             </li>
           </ul>
         </div>
