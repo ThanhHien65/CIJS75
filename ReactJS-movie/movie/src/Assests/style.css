@@ -209,6 +209,7 @@ b {
   position: absolute;
   right: 10px;
   top: 10px;
+
 }
 
 .container_image .image_item {
@@ -294,25 +295,31 @@ font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 .ShowSearch{
   position: absolute;
-  top: 50%;
+  top: 32.3%;
   left: 50%;
   width: 70%;
-  height: 100%;
-  background-color: #94a8a56b;
-  transform: translate(-50%,-50%);
-  border-radius: 1rem;
+  height: 46.7%;
+  background-color: #ffffff;
 }
 .Closesearch h1{
   font-size: 3rem;
   position: absolute;
-  top: 0.5%;
-  right: 0.5%;
+  top: 5%;
+  right: 2%;
   cursor: pointer;
-  color: #FFFF;
-  background-color: #5ad1bd;
+  color: #626262;
+  background-color: #000000;
   padding: 0 1rem;
   border-radius: 50%;
 }
 .block button {
   color: #626262;
+}
+.showTop h1{
+  font-size: 2rem;
+  text-transform: capitalize;
+  padding: 2%;
+}
+.showimage{
+  padding: 0 9%;
 }

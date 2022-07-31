@@ -93,21 +93,31 @@ const Movies = () => {
     gettrailer(getdata.id).then((response) => {
       setTrailer([...trailer,response.data.results[response.data.results.length - 1].key]);
     });
+    getdirector(getdata.id).then((response) => {
+      const createdirector = response.data.crew;
+      const searchdirector = createdirector.find(
+        (item) => item.job === "Director"
+      );
+      const createcast = response.data.cast;
+      const searchcast = createcast.map((item) => item.name);
+      setInfocas(searchcast);
+      SetInfodirector(searchdirector.name);
+    });
     setShow(false)
     setAllData([...Alldata])
     
   }
-  const render = () =>{
+  const render = (valuedata,auto) =>{
     return(
       <Slider
         slidesToShow={5}
         dots
         duration={100}
-        autoplay={true}
+        autoplay={auto}
         nextArrow={<h1>{"<-"}</h1>}
         prevArrow={<button type="button" style={{color:"red"}}>{"<-"}</button>}
       >
-        {Array.from(Alldata[0]).map((index, i) => {
+        {Array.from(valuedata).map((index, i) => {
           const setVote = (vote)=>{
             const voted = (convert) => convert.toString().replace('.', '')
             if(vote >=7){
@@ -132,10 +142,56 @@ const Movies = () => {
               key={i}
               value={i}
             >
-              <img src={getImage(index.poster_path)} alt="" className={i} onClick={Changedata}/>
+              <img src={index.poster_path === null ? 'https://static.thenounproject.com/png/741653-200.png' :  getImage(index.poster_path)} alt="" className={i} onClick={Changedata}/>
               <div className="votecirle"><div className="vote" style={{color: setVote(index.vote_average)}}><h1>{index.vote_average.toString().replace('.','')}<b style={{fontSize:"1rem",position:"absolute"}}>%</b></h1></div>
                 <div className="infordetail">
-                  <div className="infotittle"><h1 style={{fontSize:"1.6rem"}}>{index.title}</h1></div>
+                  <div className="infotittle"><h1 style={{fontSize:"1.6rem"}}>{index.original_title}</h1></div>
+                  <p style={{fontSize:"1.6rem",color: "rgba(0,0,0,0.6)"}}>{moment(index.release_date).format("MMMM DD, YYYY")}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )})}
+      </Slider>
+    )
+  }
+  const showrender = (valuedata,auto) =>{
+    return(
+      <Slider
+        slidesToShow={5}
+        dots
+        duration={100}
+        autoplay={auto}
+      >
+        {Array.from(valuedata).map((index, i) => {
+          const setVote = (vote)=>{
+            const voted = (convert) => convert.toString().replace('.', '')
+            if(vote >=7){
+               return (
+                "#21d07a"
+               )
+            }else if (vote >=5){
+              return (
+
+                "#d2d531"
+               )
+            }else {
+              return (
+                "#db2360"
+               )
+            }
+          }
+          return(
+          <div className="container_image" >
+            <div
+              className="image_item" 
+              key={i}
+              value={i}
+            >
+              <img src={index.poster_path === null ? 'https://static.thenounproject.com/png/741653-200.png' :  getImage(index.poster_path)} alt="" className={i} onClick={transferdata}/>
+              <div className="votecirle"><div className="vote" style={{color: setVote(index.vote_average)}}><h1>{index.vote_average.toString().replace('.','')}<b style={{fontSize:"1rem",position:"absolute"}}>%</b></h1></div>
+                <div className="infordetail">
+                  <div className="infotittle"><h1 style={{fontSize:"1.6rem"}}>{index.original_title}</h1></div>
                   <p style={{fontSize:"1.6rem",color: "rgba(0,0,0,0.6)"}}>{moment(index.release_date).format("MMMM DD, YYYY")}</p>
                 </div>
               </div>
@@ -150,12 +206,54 @@ const Movies = () => {
   }
   const [enter,setEnter] = useRecoilState(Datasearch);
   const [dataSearch,SetdataSearch] = useRecoilState(GetDatasearch)
+  const [resultSearch,setResultSearch] = useState([])
   const seachResult = () =>{
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${dataSearch}`)
+    .then((res) => {
+      setResultSearch(res.data.results)
+    })
     return(
-      <div className="ShowSearch">
+      <div className="ShowSearch" 
+      style={
+            enter
+              ? {
+                  transform: "translate(-50%,-50%)",
+                  opacity: "1",
+                  transition: "all 1s ease-out",
+                }
+              : { opacity: "0", transform: "translate(-50%,-1000%)", }
+          }
+     >
           <div className="Closesearch" onClick={()=>setEnter(!enter)}><h1>X</h1></div>
+          <div className="showTop"><h1>top results</h1></div>
+          <div className="showimage">
+            {resultSearch.length === 0 ? <h1 style={{fontSize:'2rem'}}>{"No Result"}</h1> :showrender (resultSearch,true)}
+          </div>
+
       </div>
     )
+  }
+  const transferdata = (e) =>{
+    setEnter(!enter)
+    setShow(false)
+    const getdata = resultSearch[e.target.className]
+    setData([getdata])
+    valuegene.length=0
+    genre.length=0
+    SetValueGene([...valuegene, getdata.genre_ids]);
+    gettrailer(getdata.id).then((response) => {
+      setTrailer([response.data.results[response.data.results.length - 1].key]);
+    });
+    getdirector(getdata.id).then((response) => {
+      const createdirector = response.data.crew;
+      const searchdirector = createdirector.find(
+        (item) => item.job === "Director"
+      );
+      const createcast = response.data.cast;
+      const searchcast = createcast.map((item) => item.name);
+      setInfocas(searchcast);
+      SetInfodirector(searchdirector.name);
+    });
   }
   return (
     <div>
@@ -163,12 +261,12 @@ const Movies = () => {
         return (
           <div className="content" key={index}>
             <div className="conent_poster">
-              <img src={getImage(movie.poster_path)} alt="" onClick={()=>console.log(dataSearch)} />
+              <img src={getImage(movie.poster_path)} alt="" onClick={()=>console.log(resultSearch)} />
             </div>
             <div className="content_introduction">
               <div className="content_moviename">
                 <div>
-                  <h1>{movie.title}</h1>
+                  <h1>{movie.original_title}</h1>
                 </div>
               </div>
               <div className="content_director">
@@ -280,8 +378,8 @@ const Movies = () => {
                     />
                   </h1>
                 </div>
-      {isShowsimi ? render() : ""}
-      {enter ? seachResult():""}
+      {isShowsimi ? render(Alldata[0],true) : ""}
+      {seachResult()}
     </div>
   );
 };

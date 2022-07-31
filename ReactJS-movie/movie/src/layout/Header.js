@@ -13,8 +13,8 @@ const Header = () => {
     if (e.key === 'Enter') {
       setEnter(!enter)
       SetData(e.target.value)
+      e.target.value=''
     }
-    e.target.value=''
   }
   const changeIcon = (e) => {
     setItem(!item);
@@ -52,7 +52,9 @@ const Header = () => {
             InputProps={{ style: { fontSize: 15 } }}
             InputLabelProps={{ style: { fontSize: 15 } }}
             margin="normal"
+            autoFocus={false}
             onKeyDown={getinput}
+            
           />
         </div>
         <div
